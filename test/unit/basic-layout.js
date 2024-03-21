@@ -1,3 +1,10 @@
+QUnit.test( 'basic layout center', function( assert ) {
+  var msnry = new Masonry( '#basic-layout-center', {
+    horizontalOrder: true,
+    centerLastRow: true
+  });
+});
+
 QUnit.test( 'basic layout top left', function( assert ) {
   var msnry = new Masonry( '#basic-layout-top-left', {
     columnWidth: 60

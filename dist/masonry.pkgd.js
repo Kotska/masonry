@@ -2357,7 +2357,7 @@ return Outlayer;
     var size = getSize( container );
     this.containerWidth = size && size.innerWidth;
   };
-
+  
   proto._getItemLayoutPosition = function( item ) {
     item.getSize();
     // how many columns does this brick span
@@ -2375,13 +2375,15 @@ return Outlayer;
       x: this.columnWidth * colPosition.col,
       y: colPosition.y
     };
+
     // apply setHeight to necessary columns
     var setHeight = colPosition.y + item.size.outerHeight;
-    var setMax = colSpan + colPosition.col;
-    for ( var i = colPosition.col; i < setMax; i++ ) {
+    var setMax = colSpan + Math.floor(colPosition.col);
+    for ( var i = Math.floor(colPosition.col); i < setMax; i++ ) {
       this.colYs[i] = setHeight;
     }
 
+    this.lastY = colPosition.y;
     return position;
   };
 
@@ -2418,7 +2420,12 @@ return Outlayer;
 
   proto._getColGroupY = function( col, colSpan ) {
     if ( colSpan < 2 ) {
-      return this.colYs[ col ];
+      if(col % 1 === 0){
+        return this.colYs[ col ];
+      } else {
+        col = Math.floor(col);
+        return Math.max(this.colYs[col], this.colYs[col+1]);
+      }
     }
     // make an array of colY values for that one group
     var groupColYs = this.colYs.slice( col, col + colSpan );
@@ -2435,6 +2442,17 @@ return Outlayer;
     // don't let zero-size items take up space
     var hasSize = item.size.outerWidth && item.size.outerHeight;
     this.horizontalColIndex = hasSize ? col + colSpan : this.horizontalColIndex;
+    var index = this.items.indexOf(item);
+
+    var index = this.items.indexOf(item);
+    var remainder2 = this.items.length % this.cols;
+    var max = Math.floor(this.items.length / this.cols);
+    if(remainder2 > 0 && this.options.centerLastRow){
+      if(index >= this.cols*max){
+        col = col+0.5;
+      }
+    }
+
 
     return {
       col: col,

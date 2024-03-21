@@ -49,5 +49,8 @@
   "files": [
     "dist",
     "masonry.js"
-  ]
+  ],
+  "overrides": {
+    "graceful-fs": "^4.2.11"
+  }
 }
