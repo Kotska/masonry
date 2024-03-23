@@ -39,21 +39,32 @@
 
   <h2>Basic layout center</h2>
   <div id="basic-layout-center" class="container">
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
-    <div class="item h3"></div>
+    <div class="sizer"></div>
+    <div class="item w2 "></div>
+    <div class="item w2 "></div>
+    <div class="item "></div>
+    <div class="item "></div>
+    <div class="item "></div>
+    <div class="item "></div>
+    <div class="item "></div>
+    <div class="item "></div>
+    <div class="item"></div>
+    <div class="item"></div>
     <div class="item"></div>
     <div class="item"></div>
     <div class="item"></div>
   </div>
   <style>
+    #basic-layout-center .sizer {
+      width: calc(25% - 5px);
+      height: 30px;
+    }
     #basic-layout-center .item {
-      width: 45px;
+      width: calc(25% - 5px);
+      height: 30px;
+    }
+    #basic-layout-center .item.w2 {
+      width: calc(50% - 5px);
     }
   </style>
 
