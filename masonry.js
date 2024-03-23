@@ -187,33 +187,29 @@
     var tmpWidth = 0;
     var lastRow = null;
     var lastWidth = 0;
-    this.items.forEach((i,n) => {
-      totalWidth += i.element.offsetWidth + this.gutter;
-      tmpWidth += i.element.offsetWidth + this.gutter;
-      lastWidth += i.element.offsetWidth + this.gutter;
-      if(tmpWidth == this.containerWidth){
+    var that = this;
+    this.items.forEach(function(i,n){
+      totalWidth += i.element.offsetWidth + that.gutter;
+      tmpWidth += i.element.offsetWidth + that.gutter;
+      lastWidth += i.element.offsetWidth + that.gutter;
+      if(tmpWidth == that.containerWidth){
         lastRow = n;
         tmpWidth = 0;
         lastWidth = 0;
-      } else if(tmpWidth > this.containerWidth){
+      } else if(tmpWidth > that.containerWidth){
         lastRow = n-1;
         tmpWidth = 0;
         lastWidth = 0;
       }
     });
-    if (this.element.id == 'basic-layout-center') {
+    if (this.options.centerLastRow) {
       var offset = (this.cols - (lastWidth / this.columnWidth)) / 2;
-      console.log(lastWidth/this.columnWidth);
       if (totalWidth % this.containerWidth !== 0) {
         if(index > lastRow){
           col = col + offset;
         }
       }
-      // console.log(this.items.indexOf(item));
     }
-    // if (index >= this.cols * max) {
-    //   col = col + 0.5;
-    // }
 
 
     return {

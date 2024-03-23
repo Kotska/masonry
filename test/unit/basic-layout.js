@@ -2,7 +2,7 @@ QUnit.test('basic layout center', function(assert) {
   var msnry = new Masonry('#basic-layout-center', {
     horizontalOrder: true,
     gutter: 5,
-    // centerLastRow: true,
+    centerLastRow: true,
     percentPosition: true,
     itemSelector: '.item',
     columnWidth: '.sizer',
