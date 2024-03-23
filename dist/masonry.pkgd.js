@@ -2466,7 +2466,7 @@ return Outlayer;
         lastWidth = 0;
       }
     });
-    if (this.options.centerLastRow) {
+    if (this.options.centerLastRow && this.cols > 1) {
       var offset = (this.cols - (lastWidth / this.columnWidth)) / 2;
       if (totalWidth % this.containerWidth !== 0) {
         if(index > lastRow){
